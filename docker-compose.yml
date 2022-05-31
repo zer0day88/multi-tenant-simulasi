@@ -1,0 +1,75 @@
+version: "3.8"
+
+services:
+  klinik-pratama-db:
+    image: postgres:13.3
+    container_name: klinik-pratama-db
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=Admin123_
+      - POSTGRES_DB=pis
+      - TZ=Asia/Bangkok
+    command: ["postgres", "-c", "log_statement=all"]
+    restart: always
+    ports:
+      - "5432:5432"
+    tty: true
+    networks:
+      - db-network
+
+  klinik-mozambique-db:
+    image: postgres:13.3
+    container_name: klinik-mozambique-db
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=Admin123_
+      - POSTGRES_DB=pis
+      - TZ=Asia/Bangkok
+    command: ["postgres", "-c", "log_statement=all"]
+    restart: always
+    ports:
+      - "5433:5432"
+    tty: true
+    networks:
+      - db-network
+
+  klinik-nice-db:
+    image: postgres:13.3
+    container_name: klinik-nice-db
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=Admin123_
+      - POSTGRES_DB=pis
+      - TZ=Asia/Bangkok
+    command: ["postgres", "-c", "log_statement=all"]
+    restart: always
+    ports:
+      - "5435:5432"
+    tty: true
+    networks:
+      - db-network
+
+  router-db:
+    image: postgres:13.3
+    container_name: router-db
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=Admin123_
+      - POSTGRES_DB=router_layanan
+      - TZ=Asia/Bangkok
+    command: ["postgres", "-c", "log_statement=all"]
+    restart: always
+    ports:
+      - "5434:5432"
+    tty: true
+    networks:
+      - db-router-layanan-network
+
+networks:
+  db-network:
+    external: true
+    name: db-network
+
+  db-router-layanan-network:
+    external: true
+    name: db-router-layanan-network
